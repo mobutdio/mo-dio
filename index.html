@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dio Music · Multi-Playlists</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <h1><i class="fab fa-spotify"></i> Dio Music</h1>
+                <p>Multi-Playlists · Listen With No Limits</p>
+            </div>
+            <div class="search-section">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="ابحث عن أغنية، فنان...">
+                <button id="searchBtn"><i class="fas fa-search"></i> بحث</button>
+            </div>
+        </div>
+
+        <div class="main-layout">
+            <!-- Sidebar - Playlists -->
+            <div class="sidebar">
+                <h3><i class="fas fa-list"></i> بلاي ليستاتي</h3>
+                <ul class="playlist-list" id="playlistList"></ul>
+                <button class="create-playlist-btn" id="createPlaylistBtn">
+                    <i class="fas fa-plus"></i> بلاي ليست جديدة
+                </button>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="search"><i class="fas fa-search"></i> بحث</button>
+                    <button class="tab-btn" data-tab="playlist"><i class="fas fa-music"></i> البلاي ليست</button>
+                    <button class="tab-btn" data-tab="recommendations"><i class="fas fa-chart-line"></i> توصيات</button>
+                </div>
+
+                <div id="searchPanel" class="panel active">
+                    <div id="searchResults" class="songs-grid"></div>
+                </div>
+
+                <div id="playlistPanel" class="panel">
+                    <div class="playlist-header">
+                        <h3 id="currentPlaylistName"></h3>
+                        <button class="delete-playlist-btn" id="deletePlaylistBtn">
+                            <i class="fas fa-trash"></i> حذف البلاي ليست
+                        </button>
+                    </div>
+                    <div id="playlistContainer"></div>
+                </div>
+
+                <div id="recPanel" class="panel">
+                    <h3><i class="fas fa-star"></i> موصى بها لك</h3>
+                    <div id="recResults" class="songs-grid"></div>
+                </div>
+
+                <div id="playerWrapper" style="display: none;">
+                    <div id="youtubePlayer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Player Bar -->
+    <div class="player-bar">
+        <div class="player-info">
+            <i class="fas fa-music"></i>
+            <div>
+                <h4 id="currentTitle">اختار أغنية</h4>
+                <p id="currentArtist">Dio Music</p>
+            </div>
+        </div>
+        <div class="player-controls">
+            <div class="control-buttons">
+                <button id="shuffleBtn" title="تشغيل عشوائي"><i class="fas fa-random"></i></button>
+                <button id="prevBtn"><i class="fas fa-backward-step"></i></button>
+                <button id="playPauseBtn"><i class="fas fa-play"></i></button>
+                <button id="nextBtn"><i class="fas fa-forward-step"></i></button>
+                <button id="repeatBtn" title="تكرار"><i class="fas fa-repeat"></i></button>
+            </div>
+            <div class="progress-container">
+                <span class="time" id="currentTime">0:00</span>
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="time" id="duration">0:00</span>
+            </div>
+        </div>
+        <div class="player-volume">
+            <i class="fas fa-volume-up"></i>
+            <input type="range" id="volumeSlider" min="0" max="100" value="70">
+        </div>
+    </div>
+
+    <!-- Modal for choosing playlist -->
+    <div id="playlistModal" class="modal">
+        <div class="modal-content">
+            <h3><i class="fas fa-folder-plus"></i> اختر البلاي ليست</h3>
+            <ul class="modal-playlist-list" id="modalPlaylistList"></ul>
+            <button class="modal-close" id="closeModalBtn"><i class="fas fa-times"></i> إلغاء</button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-container">
+            <div class="loading-bar" id="loadingBar"></div>
+            <div class="loading-text" id="loadingText">0%</div>
+            <div class="loading-particles">
+                <div class="loading-particle"></div>
+                <div class="loading-particle"></div>
+                <div class="loading-particle"></div>
+                <div class="loading-particle"></div>
+                <div class="loading-particle"></div>
+                <div class="loading-particle"></div>
+            </div>
+        </div>
+        <div class="loading-message" id="loadingMessage">🔍 جاري البحث...</div>
+    </div>
+
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>>
+</body>
+</html>
